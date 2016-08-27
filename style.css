@@ -1,0 +1,90 @@
+
+@import url('colorpaletes.css');
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-family: sans-serif;
+
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+}
+
+body {
+	background: #111;
+	margin: 0;
+}
+
+canvas {
+	background: #FFF;
+	display: block;
+}
+
+#toolbar {
+	display: inline;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	padding: 10px;
+
+	background: #2f2f2f;
+	color: #FFF;
+}
+
+.radControl {
+	width: 30px;
+	height: 30px;
+	background: #4f4f4f;
+	border-radius: 10px;
+
+	display: inline-block;
+	padding: 8px 10px;
+
+	cursor: pointer;
+}
+
+#rad {
+	float: left;
+}
+
+#colors {
+	float: right;
+}
+
+#save {
+	float: right;
+	height: 30px;
+	padding: 5px 10px;
+	background-color: #434343;
+
+	border: 1px solid #333;
+	border-radius: 10px;
+	margin-right: 20px;
+}
+
+#save:hover {
+	background-color: #616161;
+	cursor: pointer;
+}
+
+.swatch {
+	width: 30px;
+	height: 30px;
+
+	border-radius: 15px;
+	box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .5), 0px 2px 2px rgba(0,0,0,.5);
+	display: inline-block;
+	margin-left: 10px;
+
+	cursor: pointer;
+}
+
+.swatch.active {
+	border: 1px solid #EEE;
+	box-shadow: inset 0px 1px 2px #999, 0px 1px 5px #CCC;
+}
+ 
