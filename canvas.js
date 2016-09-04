@@ -138,7 +138,7 @@ var saveButton = document.getElementById("save"),
 	destination = 'save.php';
 
 function saveImage() {
-	var data = canvas.toDataURL();
+	var data = board.toDataURL();
 
 	var request = new XMLHttpRequest();
 
