@@ -15,11 +15,32 @@
 body {
 	background: #111;
 	margin: 0;
+	overflow: hidden;
 }
 
-canvas {
+#canvas_holder {
+	margin-top: 50px;
+	position: relative;
+}
+
+#canvas_holder div.bg {
 	background: url('http://www.tricky-photoshop.com/wp-content/uploads/2012/10/111.png') repeat;
+	width: 100vw;
+	height: 100vh;
+}
+
+canvas, img.board-img, div.bg {
 	display: block;
+	position: absolute;
+}
+
+img.board-img.invisible {
+	display: none;
+}
+
+img.board-img, div.bg {
+	pointer-events: none;
+	border: none;
 }
 
 #toolbar {
@@ -72,14 +93,6 @@ canvas {
 	display: block;
 	padding: 5px 10px;
 	cursor: pointer;
-}
-
-#btns a.downloadbtn {
-	background: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_cloud_download_white_24px.svg') no-repeat center;
-}
-
-#btns a.clearbtn {
-	background: url('https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_refresh_white_24px.svg') no-repeat center;
 }
 
 #btns a:active {
@@ -260,4 +273,113 @@ input[type=range] {
 	width: 80%;
 	margin: 0 2%;
 	height: 10px;
+}
+
+#panels {
+	width: 0;
+	height: 0;
+}
+
+.panel {
+	position: absolute;
+	color: white;
+	background: #222;
+	margin: 0;
+	border: 0;
+}
+
+.panel .panel-handle {
+	width: 100%;
+	height: 20px;
+	background: rgba(0, 0, 0, .4);
+}
+
+.panel .nav-pills {
+	background: transparent;
+	color: white;
+	display: inline-block;
+	font-size: 10px;
+	width: 100%;
+	height: 30px;
+	background: rgba(0, 0, 0, .4);
+}
+
+.panel .nav-pills > li {
+	width: 20%;
+	box-sizing: border-box;
+	height: 30px;
+}
+  
+.panel .nav-pills > li > a {
+	border-radius: 4px 4px 0 0 ;
+	color: white;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.panel .nav-pills > li.active > a, .panel .nav-pills > li > a:focus, .panel .nav-pills > li > a:hover {
+	background: #222;
+}
+
+.panel .tab-content {
+	color : white;
+	background-color: transparent;
+	padding : 5px 5px;
+	width: 100%;
+	height: calc(100% - 50px);
+	overflow-y: auto;
+}
+
+.panel .tab-content .tab-pane {
+	height: 100%;
+	width: 100%;
+}
+
+.controls {
+	width: 100%;
+	height: 20px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.controls > i {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	cursor: pointer;
+	background-size: 20px 20px;
+	margin-right: 10px;
+}
+  
+.layer {
+	padding: 10px 10px;
+	cursor: pointer;
+}
+
+.layer.layer-selected {
+	background: rgba(0, 0, 0, .2);
+}
+
+.layer .controls {
+	display: inline-block;
+	height: 100%;
+	width: 20%;
+	box-sizing: border-box;
+	float: right;
+	text-align: right;
+}
+
+.layer .layer-input {
+	background: transparent;
+	color: white;
+	border: 0;
+	outline: none;
+}
+
+.layer .controls > i {
+	height: 15px;
+	width: 15px;
+	background-size: 15px 15px;
 }

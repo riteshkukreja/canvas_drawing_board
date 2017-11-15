@@ -2,21 +2,40 @@
 <html>
 <head>
 	<title>Canvas</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="icons.css">
 </head>
 <body>
-		<div id='toolbar'>
-			<div id="brushes"></div>
-			<div id='colors'></div>
-			<div id='btns'></div>
-		</div>
-		<canvas id='board'>Canvas is not supported!</canvas>
-	
+	<div id="canvas_holder">
+		<div class="bg"></div>
+	</div>
+	<div id='toolbar'>
+		<div id="brushes"></div>
+		<div id='colors'></div>
+		<div id='btns'></div>
+	</div>
+
+	<div id="panels"></div>
+
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous">
+	</script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript" src='Position.js'></script>
+	<script type="text/javascript" src='EventBus.js'></script>
 	<script type="text/javascript" src='Swatch.js'></script>
 	<script type="text/javascript" src='Brush.js'></script>
 	<script type="text/javascript" src='buttons.js'></script>
 	<script type="text/javascript" src='Colors.js'></script>
+	<script type="text/javascript" src='Panel.js'></script>
+	<script type="text/javascript" src='Layers.js'></script>
+	<script type="text/javascript" src='Filters.js'></script>
+	<script type="text/javascript" src='Boards.js'></script>
 	<script type="text/javascript" src='canvas.js'></script>
 </body>
 </html>

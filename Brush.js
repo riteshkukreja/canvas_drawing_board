@@ -6,12 +6,12 @@ var Brush = function(label, setupCallback, drawCallback) {
         lastPosition = null;
     };
 
-    var setup = setupCallback || function() {
+    var setup = setupCallback || function(context) {
         context.globalCompositeOperation = 'source-over';
     };
 
     this.draw = function(position, size, color, context) {
-        setup();
+        setup(context);
 
         context.lineWidth = 2 * size;
         context.lineTo(position.x, position.y);
@@ -39,27 +39,23 @@ var Brush = function(label, setupCallback, drawCallback) {
 };
 
 var BrushLoader = new (function() {
-    var brushes = [];
-    var selectedBrush = null;
-    var brushSize = 10;
-    var container = null;
+    let brushes = [];
+    let selectedBrush = null;
+    let brushSize = 10;
+    let container = null;
 
-    var selectBrush = function(pos) {
+    let selectBrush = function(pos) {
         selectedBrush = brushes[pos];
         selectedBrush.initialize();
         updateView();
     };
 
-    this.draw = function(position, color, context) {
-        selectedBrush.draw(position, brushSize, color, context);
-    };
-
-    var updateView = function() {
+    let updateView = function() {
         container.updateDetails();
         container.toggleSwatchView(false);
     };
 
-    var drawDetailItem = function() {
+    let drawDetailItem = function() {
         /** Selected Brush details */
         var selectedBrushDetail = document.createElement("span");
         selectedBrushDetail.classList.add("bordered");
@@ -67,7 +63,7 @@ var BrushLoader = new (function() {
         return selectedBrushDetail;
     }
 
-    var drawBrushGroup = function(title, list) {
+    let drawBrushGroup = function(title, list) {
         var brushGroup = document.createElement("div");
         brushGroup.classList.add("swatch-group");
 
@@ -95,7 +91,7 @@ var BrushLoader = new (function() {
         return brushGroup;
     }; 
 
-    var drawBrushSizeGroup = function(title) {
+    let drawBrushSizeGroup = function(title) {
         var brushGroup = document.createElement("div");
         brushGroup.classList.add("swatch-group");
 
@@ -138,7 +134,7 @@ var BrushLoader = new (function() {
         return brushGroup;
     };    
 
-    var drawSwatchItems = function() {
+    let drawSwatchItems = function() {
         var brushPalete = document.createElement("div");
 
         brushPalete.appendChild(drawBrushSizeGroup("Brush Size"));
@@ -146,11 +142,20 @@ var BrushLoader = new (function() {
 
         return brushPalete;
     };
+    
+    let draw = function(position, color, context) {
+        selectedBrush.draw(position, brushSize, color, context);
+    };
 
     this.bootstrap = function(parent) {
         container = new ControlSwatch(drawDetailItem, drawSwatchItems);
         selectedBrush = brushes[0];
         container.draw(parent);
+
+        EventBus.subscribe("draw-point", (event, data) => {
+            draw(data.position, ColorLoader.getSelected(), data.context);
+            EventBus.publish("draw-point-success", data.position);
+        });
     };
 
     this.getSelected = function() {
@@ -181,7 +186,7 @@ var SquareBrush = new Brush("Square Brush", null, function(position, size, color
     context.fill();
 });
 
-var ClearBrush = new Brush("Clear Brush", function() {
+var ClearBrush = new Brush("Clear Brush", function(context) {
         context.globalCompositeOperation = 'destination-out';
     }, function(position, size, color, context) {
         context.arc(position.x, position.y, size, 0, 2*Math.PI);
