@@ -15,3 +15,6 @@ See [Demo](https://riteshkukreja.github.io/canvas_drawing_board/)
 - Add HTML5 color selector for custom colors
 - Add Text input with font and size configurations
 - Allow selection of objects
+
+## Known Bugs
+- Need to click apply filter button twice to work

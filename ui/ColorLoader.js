@@ -1,18 +1,3 @@
-var Color = function(r,g,b,a) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
-    this.a = a || 100;
-
-    this.toString = function() {
-        return "rgba(" + this.r + "," + this.g + "," + this.b + "," + (this.a/100) + ")";
-    };
-
-    this.clone = function() {
-        return new Color(this.r, this.g, this.b, this.a);
-    };
-};
-
 var ColorLoader = new (function() {
     var colors = [];
     var history = [];
@@ -180,16 +165,3 @@ var ColorLoader = new (function() {
             container.updateSwatches();
     } 
 })();
-
-var getRandomNumber = function(min,max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-};
-
-var getRandomColor = function() {
-    return new Color(getRandomNumber(0, 255),  getRandomNumber(0, 255),  getRandomNumber(0, 255));
-};
-
-var colorLimit = 50;
-for(var i = 0; i < colorLimit; i++) {
-    ColorLoader.addColor(getRandomColor());
-}

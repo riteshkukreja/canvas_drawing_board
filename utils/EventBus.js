@@ -1,4 +1,4 @@
-let EventBus = new (function() {
+var EventBus = new (function() {
     this.dom = $("<div/>");
 
     this.subscribe = function(event, callback) {

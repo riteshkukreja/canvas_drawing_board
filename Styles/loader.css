@@ -1,0 +1,31 @@
+#loaderHolder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: #444;
+    color: #AAA;
+
+    z-index: 99;
+    line-height: 100vh;
+}
+
+#loaderHolder #loaderStatus {
+    font-size: 30vw;
+    text-align: center;
+    font-weight: bold;
+    top: calc(50% - 15vw);
+    position: relative;
+}
+
+#loaderHolder #loaderStatus::after {
+    content: '%';
+    display: block;
+    position: absolute;
+    right: 15vw;
+    bottom: 5vw;
+    font-size: 10vw;
+    color: #666;
+}

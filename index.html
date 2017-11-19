@@ -2,11 +2,15 @@
 <html>
 <head>
 	<title>Canvas</title>
+	<link rel="stylesheet" href="styles/loader.css" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="icons.css">
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+	<link rel="stylesheet" type="text/css" href="styles/icons.css">
 </head>
 <body>
+	<div id="loaderHolder">
+		<h1 id="loaderStatus">100</h1>
+	</div>
 	<div id="canvas_holder">
 		<div class="bg"></div>
 	</div>
@@ -18,24 +22,26 @@
 
 	<div id="panels"></div>
 
-	<script
-		src="https://code.jquery.com/jquery-3.2.1.min.js"
-		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous">
-	</script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="ModuleLoader.js"></script>
+	<script>
+		ModuleLoader.start();
+		let timeoutTimer = null;
+		let domTimer = document.getElementById("loaderStatus");
+		let loaderHolder = document.getElementById("loaderHolder");
 
-	<script type="text/javascript" src='Position.js'></script>
-	<script type="text/javascript" src='EventBus.js'></script>
-	<script type="text/javascript" src='Swatch.js'></script>
-	<script type="text/javascript" src='Brush.js'></script>
-	<script type="text/javascript" src='buttons.js'></script>
-	<script type="text/javascript" src='Colors.js'></script>
-	<script type="text/javascript" src='Panel.js'></script>
-	<script type="text/javascript" src='Layers.js'></script>
-	<script type="text/javascript" src='Filters.js'></script>
-	<script type="text/javascript" src='Boards.js'></script>
-	<script type="text/javascript" src='canvas.js'></script>
+		let showCounter = function() {
+			if(timeoutTimer)
+				window.clearTimeout(timeoutTimer);
+
+			domTimer.innerHTML = ModuleLoader.showProgress();
+			if(!ModuleLoader.completed())
+				timeoutTimer = window.setTimeout(showCounter, 100);
+			else {
+				loaderHolder.remove();
+			}
+		};
+
+		showCounter();
+	</script>
 </body>
 </html>
